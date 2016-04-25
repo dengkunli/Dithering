@@ -33,9 +33,10 @@ clustered_dots = np.array(
                  [22, 10, 2 , 3 , 4 , 16],
                  [26, 14, 7 , 11, 15, 28],
                  [35, 31, 19, 23, 27, 32]])
-                 
+
+# img: 255 grays
 def orderedThreshold(img, mat):
     s = createFilter(mat, img.shape)
-    q = quantification(img * 255, mat.size)
+    q = quantification(img, mat.size)
     return threshold(q, s)
     
