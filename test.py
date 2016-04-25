@@ -1,4 +1,4 @@
-from skimage import io, color
+from skimage import io, color, external
 import numpy
 
 def filtre(m,taille):
@@ -15,7 +15,7 @@ def ceuillage(imgQ, filtre):
     result = numpy.zeros(imgQ.shape)
     for i in range(imgQ.shape[0]) :
         for j in range(imgQ.shape[1]) :
-            if (imgQ[i][j] < filtre[i][j]) :
+            if (imgQ[i][j] <= filtre[i][j]) :
                 result[i][j] = 0
             else :
                 result[i][j] = 1
@@ -59,8 +59,5 @@ s3 = numpy.array([[30, 22, 16, 21, 33, 35],
 		       [27, 8 , 6 , 10, 25, 29],
 		       [32, 20, 17, 23, 31, 34]])                
         
-#ss = ss+0.5
-#D = 255./36.
 result = orderedThreshold("Lenna.png",s3)
-io.imshow(result)
-#io.show()
+external.tifffile.imshow(result)
