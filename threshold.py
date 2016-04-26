@@ -33,9 +33,15 @@ def randomThresholding(img, amplitude):
     func = lambda x: 0 if x > 0.5 else 255
     return filters.threshold_adaptive(img_noised, 1, 'generic', param=func)
 
-    
+'''
+The filter of Floyd & Steinberg
+F=| 0 0 7|*(1/16)
+  | 3 5 1|
+'''
 def errorDiffusion(img_grey):
+    #Creat a new variable "img" so that when we excute the funcion, the original variable "img_grey" will not be affected.
     img=img_grey.copy()
+    #From left to right and from top to bottom, apply the filter pixel by pixel
     for y in range(0, img.shape[1]-1):
         for x in range(1, img.shape[0]-1):
           oldpixel = img[x, y]
